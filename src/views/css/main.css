@@ -1,0 +1,25 @@
+.nav-link{
+    color: blanchedalmond !important;
+}
+
+.navbar-brand{
+    color: blanchedalmond !important;
+}
+
+#home-section {
+    background: url('/img/estudiobobo.jpg') no-repeat;
+      min-height: 90vh;
+      background-size: cover;
+      opacity: rgba(0, 0, 0, .7);
+   
+    }
+
+.dropdown:hover>.dropdown-menu{
+        display: block;
+    }
+    
+dark-overlay{
+    background-color:
+
+}
+    
