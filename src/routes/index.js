@@ -50,26 +50,6 @@ router.get('/contacto',  (req, res) => {
 
 
 
-router.get('/products/:page', (req, res, next) => {
-    let perPage = 9;
-    let page = req.params.page || 1;
-  
-    Task
-      .find({}) // finding all documents
-      .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
-      .limit(perPage) // output just 9 items
-      .exec((err, blogs) => {
-        Task.count((err, count) => { // count to calculate the number of pages
-          if (err) return next(err);
-          res.render('blog/bloglist', {
-            blogs,
-            current: page,
-            pages: Math.ceil(count / perPage)
-          });
-        });
-      });
-  });
-
 
 
 

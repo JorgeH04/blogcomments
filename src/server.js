@@ -1,13 +1,20 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  } 
+
+
 const path = require('path');
 const morgan = require('morgan');
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
 
+//bbdd
+const { mongoose } = require('./database');
+
 //bbddmongodb://localhost/estudio-db
-mongoose.connect('mongodb://localhost/estudio-db')
-.then(db => console.log('Db connected'))
-.catch(err => console.log(err));
+//mongoose.connect('mongodb://localhost/estudio-db')
+//.then(db => console.log('Db connected'))
+//.catch(err => console.log(err));
 
 
 //importing routes
