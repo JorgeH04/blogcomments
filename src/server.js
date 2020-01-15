@@ -4,8 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
-//bbdd
-mongoose.connect('mongodb://jorgehhh:terremototo001+@ds155596.mlab.com:55596/estudio-db')
+//bbddmongodb://localhost/estudio-db
+mongoose.connect('mongodb://localhost/estudio-db')
 .then(db => console.log('Db connected'))
 .catch(err => console.log(err));
 
