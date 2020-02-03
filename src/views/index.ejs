@@ -1,48 +1,107 @@
 <%include partials/_header%>
 
 
-<header id="home-section">
-    <div class="dark-overlay">
-      <div class="home-inner">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 d-none d-sm-block">
-              <h1 class="display-4"></h1>
-
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</header>
 
 
-<br>
-<br>
-<br>
 
-<div class="about container mt-5">
-    <div class="row text-center">
-        <div class="col-md-12">
-            <h1 style="color: dodgerblue">Bienvenidos a nuestro sitio</h1>
-        </div>
-    </div>
-    <div class="row pt-5">
-        <div class="col-md-6">
-            <img class="img-fluid" src="img/beard-chair-computer-840996.jpg" alt="img">
-        </div>
-        
-        <div class="col-md-6">
-            <p style="margin: 0px 10px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi perferendis perspiciatis nisi, temporibus ab illum nemo rem nam vero odit autem cupiditate architecto dolorem, consequuntur neque, voluptatum voluptate aspernatur quae.<br/>
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus assumenda culpa repudiandae magni! Maxime voluptatum repellendus in rerum, unde incidunt commodi quibusdam quaerat eligendi nostrum, aliquid saepe aut sit velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus assumenda culpa repudiandae magni! Maxime voluptatum repellendus in rerum, unde incidunt commodi quibusdam quaerat eligendi nostrum, aliquid saepe aut sit velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus assumenda culpa repudiandae magni! Maxime voluptatum repellendus in rerum, unde incidunt commodi quibusdam quaerat eligendi nostrum, aliquid saepe aut sit velit.quibusdam quaerat eligendi nostrum, aliquid saepe aut sit velit.</p>
-        </div>
-    </div>
-</div>    
 
-<br>
-<br>
-<br>
+<div class="containeer mt-5 p-4" id="cece">
+   <div class="row">
+
+    <% post.forEach(function (posts) { %>
+
+           <div class="col-md-10 mt-5">
+             <div class="card ">
+               <div class="card-body">
+                   <h3 class="card-title text-uppercase">
+                      <%= posts.nombre %>
+                   </h3>
+                   <p class="text-center mt-4"> <img src="<%= posts.img %>" class="text-center" srcset="">    </p>
+                   <p class="m-2 mt-4"><%= posts.mensaje %></p>
+
+                   <p class="text-muted">  <%= format(posts.timestamp)%>  </p>
+                   
+                   <div class="card-body text-center">
+                        <a href="/postRedirect/<%= posts.id %>" class="btn btn-info" id="btn-toggle-comment"> <i class="fad fa-comments-alt"></i><i class="fa fa-comments-o"></i> Deja un comentario</a> 
+                   </div>
+
+               </div>
+
+           </div>
+
+
+       </div>
+       <% }) %>
+
+   </div>
+
+</div>
+
+
+
+
+<div class="row">
+   <!-- pagination -->
+   <% if(pages > 0) { %> <!-- show pagination if there is pages -->
+     <nav class="mx-auto" style="margin-bottom: 50px">
+       <ul class="pagination">
+         <!-- FIRST ITEM -->
+         <% if(current == 1) { %>
+           <li class="page-item disabled">
+             <a class="page-link" href="#">First</a>
+           </li>
+         <% } else { %>
+           <li class="page-item">
+             <a class="page-link" href="/index/1">First</a>
+           </li>
+         <% } %>
+         <!-- ITEMS  -->
+         <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+         <% if(i !== 1) { %>
+           <li class="page-item disabled">
+             <a class="page-link" href="#">...</a>
+           </li>
+         <% } %>
+         <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
+           <% if(i == current) { %>
+             <li class="page-item active">
+               <a class="page-link" href="<%= i %>">
+                 <%= i %>
+               </a>
+             </li>
+           <% } else { %>
+             <li class="page-item">
+               <a class="page-link" href="/index/<%= i %>">
+                 <%= i %>
+               </a>
+             </li>
+           <% } %>
+           <% if (i == Number(current) + 4 && i < pages) { %>
+              <li class="page-item disabled">
+                <a class="page-link" href="#">...</a>
+              </li>
+           <% } %>
+         <% } %>
+         <!-- LAST ITEM -->
+         <% if(current == pages) { %>
+           <li class="page-item disabled">
+             <a class="page-link" href="#">
+               Last
+             </a>
+           </li>
+         <% } else { %>
+           <li class="page-item">
+             <a class="page-link" href="/index/<%= pages %>">
+               Last
+             </a>
+           </li>
+         <% } %>
+       </ul>
+     </nav>
+   <% } %>
+ </div>
+
+
 
 
 

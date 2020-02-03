@@ -1,0 +1,68 @@
+<%include partials/_header%>
+
+
+
+
+<div class="container p-4">
+    <div class="row">
+        <div class= "col-md-12 mt-5">
+ 
+           <div class="card text-center mx-auto" >
+                 <div class="card-body">
+                       <h5><%= post.nombre%></h2>
+                       <h5><%= post.mensaje%></h2>
+                       <br>
+ 
+                 </div>     
+             </div>
+        </div>
+     </div>
+ </div>
+
+
+       <!-- COMMENTS -->
+<div class="container">
+<div class="card mt-2">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h3>Comments</h3>
+  
+  </div>
+  <div class="card-body">
+    <blockquote id="post-comment">
+      <form action="/post/<%= post._id%>/comment" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" placeholder="email">
+        </div>
+        <div class="form-group">
+          <textarea name="comment" class="form-control" rows="2" placeholder="Your Comment"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button class="btn btn-success" id="btn-comment">
+            <i class="fa fa-comment"></i> Post
+          </button>
+        </div>
+      </form>      
+    </blockquote>
+    <ul class="list-group p-4">
+        <% for(var i = 0; i < comments.length; i++) { %>
+
+            <div class="card">
+             <div class="card-body text-center">                    
+                 <p><%= comments[i].email %></p>
+                 <p><%= comments[i].comment %></p>
+                
+                 <a href="/delete/comment/<%= comments[i].id %>" class="btn btn-danger">
+                   Delete
+                </a>
+                <a href="/edit/<%= comments[i].id %>" class="btn btn-info">
+                  Edit
+                </a>                
+            </div>
+            <% } %>
+        </ul>
+     </div>
+   </div>
+</div>
+
+<%include partials/_footer%>

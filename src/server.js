@@ -6,6 +6,10 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require('path');
 const morgan = require('morgan');
 const express = require('express');
+const { format } = require('timeago.js');
+const engine = require('ejs-mate');
+
+
 const app = express();
 
 //bbdd
@@ -20,7 +24,6 @@ const { mongoose } = require('./database');
 //importing routes
 const indexRoutes = require('./routes/index');
 
-
 //settings
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +35,11 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'views')));
 
+// Global variables
+app.use((req, res, next) => {
+app.locals.format = format;
+next();
+});
 
 //routes
 app.use('/', indexRoutes);
