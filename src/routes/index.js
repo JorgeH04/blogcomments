@@ -30,7 +30,7 @@ router.post('/add', async (req, res) => {
 
 
 
-router.get('/postRedirect/:post_id', async (req, res) => {
+router.get('/postredirect/:post_id', async (req, res) => {
     const { post_id } = req.params;
     const post = await Post.findById(post_id);
     const count = await Comment.countDocuments(post_id);
@@ -38,9 +38,9 @@ router.get('/postRedirect/:post_id', async (req, res) => {
     find({post_id: post._id})
     .sort({ timestamp: -1 });
 
-    //console.log(post);
+    //console.log(post);  167.71.252.38
     //res.send('recibido');
-     res.render('postRedirect', {post, comments, count});
+     res.render('postredirect', {post, comments, count});
   });
 
 
@@ -54,14 +54,7 @@ router.get('/postRedirect/:post_id', async (req, res) => {
   });  
 
 
-  //router.get('/allposts/:post_id', async (req, res) => {
-    //const { post_id } = req.params;
-    //const post = await Post.findById(post_id);
-    //const comments = await Comment.find({post_id: post._id});
-    //console.log(post);
-    //res.send('recibido');
-    // res.redirect('allpostsRedirect', {post, comments});
-  //});
+
 
   router.post('/post/:post_id/comment', async (req, res, next) => {
     const post = await Post.findById(req.params.post_id);
